@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Houston Flood Safety Guide — An IB Student Project on flood preparedness, safety, and recovery for Houston residents.">
+  <title>Houston Flood Safety Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Skip to content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Sticky Navigation -->
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-icon">&#x1F30A;</span> Flood Safety
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#flood-risk">Flood Risk</a></li>
+        <li><a href="#before">Before</a></li>
+        <li><a href="#during">During</a></li>
+        <li><a href="#after">After</a></li>
+        <li><a href="#statistics">Stats</a></li>
+        <li><a href="#contacts">Contacts</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <canvas id="rainCanvas" aria-hidden="true"></canvas>
+      <div class="hero-content" data-aos="fade-up">
+        <h1 class="hero-title">Houston Flood<br>Safety Guide</h1>
+        <p class="hero-subtitle">Everything you need to know to stay safe before, during, and after a flood.</p>
+        <a href="#flood-risk" class="btn btn-primary">Are You Prepared?</a>
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- ============ FLOOD RISK ============ -->
+    <section class="section" id="flood-risk">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">What Is Flood Risk?</h2>
+        <div class="two-col">
+          <div class="text-col" data-aos="fade-right">
+            <p>Flooding is when water covers land that is usually dry. <strong>Flash floods</strong> are especially dangerous because they strike with little warning and cause massive damage.</p>
+            <p>Floods can destroy buildings and homes and carry harmful, polluted water that poses serious health risks.</p>
+            <p>Nature helps fight flooding: plants, trees, and shrubs reduce flood risk by limiting runoff water and increasing rain retention. Solutions like <strong>permeable pavements</strong> and <strong>rain gardens</strong> also make a big difference.</p>
+            <p>Use the <strong>FEMA Flood Map</strong> or <strong>National Risk Index</strong> to check your flood risk based on your location.</p>
+          </div>
+          <div class="map-col" data-aos="fade-left">
+            <div id="floodMap" class="flood-map" role="img" aria-label="Interactive map of Houston showing major flood-prone areas"></div>
+            <p class="map-caption">Houston flood-prone areas &mdash; data from FEMA</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BEFORE A FLOOD ============ -->
+    <section class="section section-alt" id="before">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Before a Flood</h2>
+        <p class="section-desc" data-aos="fade-up">Use this interactive checklist to make sure you're ready. Your progress is saved automatically.</p>
+
+        <div class="checklist-grid">
+          <!-- Preparedness -->
+          <div class="checklist-card glass-card" data-aos="fade-up">
+            <h3><span class="card-icon">&#x1F6E1;</span> Preparedness</h3>
+            <label class="check-item"><input type="checkbox" data-key="prep-1"><span>Sign up for alerts (EAS, NOAA, FEMA) and get a weather radio</span></label>
+            <label class="check-item"><input type="checkbox" data-key="prep-2"><span>Take photos of your property and items for insurance</span></label>
+            <label class="check-item"><input type="checkbox" data-key="prep-3"><span>Buy flood insurance (home/renter's insurance usually doesn't cover floods)</span></label>
+            <label class="check-item"><input type="checkbox" data-key="prep-4"><span>Waterproof important documents and make digital copies</span></label>
+            <label class="check-item"><input type="checkbox" data-key="prep-5"><span>Move valuables to higher spots in your home</span></label>
+            <label class="check-item"><input type="checkbox" data-key="prep-6"><span>Install a battery sump pump and back-flow valve</span></label>
+            <label class="check-item"><input type="checkbox" data-key="prep-7"><span>Stock sandbags as a barrier</span></label>
+            <label class="check-item"><input type="checkbox" data-key="prep-8"><span>Clean drains and sewage passages</span></label>
+            <label class="check-item"><input type="checkbox" data-key="prep-9"><span>Plan family communication and meeting points</span></label>
+            <label class="check-item"><input type="checkbox" data-key="prep-10"><span>Plan for children, elderly, and disabled family members</span></label>
+          </div>
+
+          <!-- Flood Kit — Evacuation -->
+          <div class="checklist-card glass-card" data-aos="fade-up" data-aos-delay="100">
+            <h3><span class="card-icon">&#x1F392;</span> Flood Kit — Essentials</h3>
+            <label class="check-item"><input type="checkbox" data-key="kit-1"><span>3 days of non-perishable food</span></label>
+            <label class="check-item"><input type="checkbox" data-key="kit-2"><span>1 gallon of water per person per day</span></label>
+            <label class="check-item"><input type="checkbox" data-key="kit-3"><span>Manual can opener</span></label>
+            <label class="check-item"><input type="checkbox" data-key="kit-4"><span>Medications and first-aid supplies</span></label>
+            <label class="check-item"><input type="checkbox" data-key="kit-5"><span>Toiletries and disability products</span></label>
+            <label class="check-item"><input type="checkbox" data-key="kit-6"><span>Batteries, phone & car chargers</span></label>
+            <label class="check-item"><input type="checkbox" data-key="kit-7"><span>Radio and flashlight</span></label>
+            <label class="check-item"><input type="checkbox" data-key="kit-8"><span>ID documents (passport, SSN)</span></label>
+            <label class="check-item"><input type="checkbox" data-key="kit-9"><span>Insurance, medical, and other records</span></label>
+          </div>
+
+          <!-- Flood Kit — Special Needs -->
+          <div class="checklist-card glass-card" data-aos="fade-up" data-aos-delay="200">
+            <h3><span class="card-icon">&#x1F43E;</span> Special Needs & Pets</h3>
+            <label class="check-item"><input type="checkbox" data-key="sp-1"><span>Wheelchair and mobility aids</span></label>
+            <label class="check-item"><input type="checkbox" data-key="sp-2"><span>Dietary restriction supplies</span></label>
+            <label class="check-item"><input type="checkbox" data-key="sp-3"><span>Pet vaccine records and photos</span></label>
+            <label class="check-item"><input type="checkbox" data-key="sp-4"><span>Leash, toys, pet food & water</span></label>
+            <label class="check-item"><input type="checkbox" data-key="sp-5"><span>Fire extinguisher (shelter-in-place)</span></label>
+            <label class="check-item"><input type="checkbox" data-key="sp-6"><span>Sealing material (shelter-in-place)</span></label>
+            <label class="check-item"><input type="checkbox" data-key="sp-7"><span>Car kit: maps, safe clothing, repair items</span></label>
+            <label class="check-item"><input type="checkbox" data-key="sp-8"><span>Check expiration dates on all supplies</span></label>
+          </div>
+        </div>
+        <div class="checklist-progress" data-aos="fade-up">
+          <div class="progress-bar"><div class="progress-fill" id="checklistProgress"></div></div>
+          <span class="progress-text" id="checklistText">0 / 0 completed</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DURING A FLOOD ============ -->
+    <section class="section" id="during">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">During a Flood</h2>
+        <p class="section-desc" data-aos="fade-up">Follow this decision tree to stay safe when floodwaters rise.</p>
+
+        <div class="decision-tree" data-aos="fade-up">
+          <!-- Root -->
+          <div class="dt-node dt-root">
+            <div class="dt-content">Are you indoors or in a vehicle?</div>
+          </div>
+          <div class="dt-branches">
+            <!-- Indoor Branch -->
+            <div class="dt-branch">
+              <div class="dt-connector"></div>
+              <div class="dt-node dt-option">
+                <div class="dt-label">Indoors</div>
+              </div>
+              <div class="dt-connector"></div>
+              <div class="dt-node dt-action">
+                <div class="dt-content">
+                  <strong>Get to the highest open point</strong> (roof, not attic or basement). Call 9-1-1 if needed. Stay away from flood waters.
+                </div>
+              </div>
+            </div>
+            <!-- Vehicle Branch -->
+            <div class="dt-branch">
+              <div class="dt-connector"></div>
+              <div class="dt-node dt-option">
+                <div class="dt-label">In a Vehicle</div>
+              </div>
+              <div class="dt-connector"></div>
+              <div class="dt-node dt-question">
+                <div class="dt-content">Is water rising inside the car?</div>
+              </div>
+              <div class="dt-sub-branches">
+                <div class="dt-branch">
+                  <div class="dt-connector"></div>
+                  <div class="dt-node dt-action dt-danger">
+                    <div class="dt-label">Yes</div>
+                    <div class="dt-content">Get on the <strong>roof of the car</strong> and call emergency services immediately.</div>
+                  </div>
+                </div>
+                <div class="dt-branch">
+                  <div class="dt-connector"></div>
+                  <div class="dt-node dt-action dt-warning">
+                    <div class="dt-label">No</div>
+                    <div class="dt-content"><strong>Stay inside the vehicle.</strong> Do not attempt to drive through flood water.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Critical Rules -->
+          <div class="rules-grid" data-aos="fade-up">
+            <div class="rule-card glass-card danger">
+              <div class="rule-icon">&#x26A0;</div>
+              <p><strong>Never</strong> walk, swim, or drive through flood waters. 6 inches can knock you down; 12 inches can sweep away a vehicle.</p>
+            </div>
+            <div class="rule-card glass-card danger">
+              <div class="rule-icon">&#x1F6AB;</div>
+              <p><strong>Never</strong> cross bridges over fast-moving water or drive on underground or barricaded roads.</p>
+            </div>
+            <div class="rule-card glass-card warning">
+              <div class="rule-icon">&#x1F4F1;</div>
+              <p><strong>Evacuate</strong> if ordered. Stay updated on alerts and notifications at all times.</p>
+            </div>
+            <div class="rule-card glass-card warning">
+              <div class="rule-icon">&#x1F4CF;</div>
+              <p>Water depth is <strong>easily underestimated.</strong> Never assume you can judge how deep it is.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EVACUATION ============ -->
+    <section class="section section-alt" id="evacuation">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Evacuation vs. Shelter-In-Place</h2>
+        <div class="evac-grid">
+          <div class="evac-card glass-card" data-aos="fade-right">
+            <h3>&#x1F6B6; Evacuation</h3>
+            <ul>
+              <li>Follow all local evacuation procedures</li>
+              <li>Use the <strong>FEMA app</strong> to find shelter locations</li>
+              <li>Confirm shelters allow pets before heading out</li>
+              <li>Keep your car fueled and your flood kit inside</li>
+              <li>If you don't have a car, contact local emergency offices</li>
+              <li>Turn off gas, electricity, and other home systems before leaving</li>
+            </ul>
+          </div>
+          <div class="evac-card glass-card" data-aos="fade-left">
+            <h3>&#x1F3E0; Shelter-In-Place</h3>
+            <ul>
+              <li>Get to an <strong>open, high place</strong> (e.g., roof)</li>
+              <li><strong>Avoid</strong> attics and basements — you could get trapped</li>
+              <li>Call 9-1-1 if you need rescue</li>
+              <li>Have your fire extinguisher and sealing material ready</li>
+              <li>If water surrounds your car, stay inside; if it enters, climb to the roof</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AFTER A FLOOD ============ -->
+    <section class="section" id="after">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">After a Flood</h2>
+        <p class="section-desc" data-aos="fade-up">Recovery takes time. Follow these steps in order to stay safe.</p>
+
+        <div class="timeline" data-aos="fade-up">
+          <div class="timeline-item" data-aos="fade-right">
+            <div class="timeline-marker">1</div>
+            <div class="timeline-content glass-card">
+              <h3>Wait for the All-Clear</h3>
+              <p>Only return home when local authorities say it is safe. Follow all government orders.</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-aos="fade-left">
+            <div class="timeline-marker">2</div>
+            <div class="timeline-content glass-card">
+              <h3>Avoid Flood Water</h3>
+              <p>Don't drink, touch, or go near flood water. It may contain sewage, chemicals, and dangerous debris.</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-aos="fade-right">
+            <div class="timeline-marker">3</div>
+            <div class="timeline-content glass-card">
+              <h3>Watch for Hazards</h3>
+              <p>Be alert for diseases, chemicals, animals, downed power lines, and other dangerous objects.</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-aos="fade-left">
+            <div class="timeline-marker">4</div>
+            <div class="timeline-content glass-card">
+              <h3>Document Everything</h3>
+              <p>Take photographs of all damage <strong>before</strong> cleaning up. Hire a flood adjuster for insurance claims, then file your claim.</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-aos="fade-right">
+            <div class="timeline-marker">5</div>
+            <div class="timeline-content glass-card">
+              <h3>Protect Yourself</h3>
+              <p>Wear safe clothing, gloves, boots, and masks during cleanup. Disinfect items with a bleach solution.</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-aos="fade-left">
+            <div class="timeline-marker">6</div>
+            <div class="timeline-content glass-card">
+              <h3>Check for Mold</h3>
+              <p>Do not enter buildings with visible or smellable mold. Mold can cause serious health problems.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATISTICS ============ -->
+    <section class="section section-alt" id="statistics">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Key Statistics</h2>
+        <div class="stats-grid">
+          <div class="stat-card glass-card" data-aos="zoom-in">
+            <div class="stat-number" data-target="6">0</div>
+            <div class="stat-unit">inches</div>
+            <p>of moving water can knock an adult off their feet</p>
+          </div>
+          <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="100">
+            <div class="stat-number" data-target="12">0</div>
+            <div class="stat-unit">inches</div>
+            <p>of rushing water can carry away a vehicle</p>
+          </div>
+          <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="200">
+            <div class="stat-number" data-target="3">0</div>
+            <div class="stat-unit">days</div>
+            <p>of food and water you should have in your flood kit</p>
+          </div>
+          <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="300">
+            <div class="stat-number" data-target="1">0</div>
+            <div class="stat-unit">gallon / person / day</div>
+            <p>of water recommended for emergency supplies</p>
+          </div>
+        </div>
+
+        <div class="chart-container" data-aos="fade-up">
+          <h3>Flood Kit Checklist Categories</h3>
+          <canvas id="kitChart" aria-label="Chart showing flood kit categories and item counts"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EMERGENCY CONTACTS ============ -->
+    <section class="section" id="contacts">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Emergency Contacts</h2>
+        <div class="contacts-grid">
+          <div class="contact-card glass-card" data-aos="fade-up">
+            <div class="contact-icon">&#x1F6A8;</div>
+            <h3>Emergency</h3>
+            <a href="tel:911" class="contact-number">9-1-1</a>
+            <p>Life-threatening emergencies</p>
+          </div>
+          <div class="contact-card glass-card" data-aos="fade-up" data-aos-delay="50">
+            <div class="contact-icon">&#x1F4DE;</div>
+            <h3>Non-Emergency Help</h3>
+            <a href="tel:7138370311" class="contact-number">3-1-1 / 713-837-0311</a>
+            <p>City of Houston services</p>
+          </div>
+          <div class="contact-card glass-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="contact-icon">&#x1F4CB;</div>
+            <h3>Texas Emergency Registry</h3>
+            <a href="tel:211" class="contact-number">2-1-1</a>
+            <p>Register for emergency assistance</p>
+          </div>
+          <div class="contact-card glass-card" data-aos="fade-up" data-aos-delay="150">
+            <div class="contact-icon">&#x26A1;</div>
+            <h3>Downed Power / Gas Lines</h3>
+            <a href="tel:18888765786" class="contact-number">1-888-876-5786</a>
+            <p>Report utility hazards</p>
+          </div>
+          <div class="contact-card glass-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="contact-icon">&#x2764;</div>
+            <h3>American Red Cross</h3>
+            <a href="tel:7135268300" class="contact-number">713-526-8300</a>
+            <p>Greater Houston chapter</p>
+          </div>
+          <div class="contact-card glass-card" data-aos="fade-up" data-aos-delay="250">
+            <div class="contact-icon">&#x1F46E;</div>
+            <h3>Houston Police</h3>
+            <a href="tel:7138843131" class="contact-number">713-884-3131</a>
+            <p>Non-emergency line</p>
+          </div>
+          <div class="contact-card glass-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="contact-icon">&#x1F9E0;</div>
+            <h3>Disaster Distress Helpline</h3>
+            <a href="tel:18009855990" class="contact-number">1-800-985-5990</a>
+            <p>Mental health support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUIZ ============ -->
+    <section class="section section-alt" id="quiz">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Test Your Flood Safety Knowledge</h2>
+        <div class="quiz-container glass-card" data-aos="fade-up" id="quizContainer">
+          <div id="quizContent"></div>
+          <div id="quizScore" class="quiz-score hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESOURCES ============ -->
+    <section class="section" id="resources">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Resources</h2>
+        <div class="resources-grid" data-aos="fade-up">
+          <a href="https://www.ready.gov/floods" target="_blank" rel="noopener" class="resource-link glass-card">Floods | Ready.gov</a>
+          <a href="https://www.fema.gov/flood-maps" target="_blank" rel="noopener" class="resource-link glass-card">FEMA Flood Map Service Center</a>
+          <a href="https://hazards.fema.gov/nri/" target="_blank" rel="noopener" class="resource-link glass-card">National Risk Index | FEMA</a>
+          <a href="https://www.epa.gov/green-infrastructure" target="_blank" rel="noopener" class="resource-link glass-card">Mitigate Flooding | US EPA</a>
+          <a href="https://www.h-gac.com/disaster-recovery" target="_blank" rel="noopener" class="resource-link glass-card">Disaster Recovery | H-GAC</a>
+          <a href="https://www.readyharris.org" target="_blank" rel="noopener" class="resource-link glass-card">Ready Harris</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-credit">Created as an <strong>IB Middle Years Programme</strong> Student Project</p>
+        <p class="footer-sub">Houston Flood Safety Guide &copy; 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Emergency Button -->
+  <div class="emergency-fab" id="emergencyFab">
+    <button class="fab-btn" id="fabBtn" aria-label="Show emergency contacts" aria-expanded="false">
+      <span class="fab-icon">&#x1F198;</span>
+      <span class="fab-text">Emergency</span>
+    </button>
+    <div class="fab-panel" id="fabPanel" role="dialog" aria-label="Emergency contacts">
+      <a href="tel:911" class="fab-contact"><strong>9-1-1</strong> Emergency</a>
+      <a href="tel:7138370311" class="fab-contact"><strong>3-1-1</strong> Non-Emergency</a>
+      <a href="tel:18009855990" class="fab-contact"><strong>1-800-985-5990</strong> Disaster Distress</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
