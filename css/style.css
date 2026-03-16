@@ -409,6 +409,12 @@ ul { list-style: none; }
 .resource-texas { border-left-color: #F97316; background: rgba(249, 115, 22, 0.08); }
 .resource-texas:hover { box-shadow: 0 8px 24px rgba(249, 115, 22, 0.2); }
 
+.resource-houston { border-left-color: #06B6D4; background: rgba(6, 182, 212, 0.08); }
+.resource-houston:hover { box-shadow: 0 8px 24px rgba(6, 182, 212, 0.2); }
+
+.resource-dhs { border-left-color: #64748B; background: rgba(100, 116, 139, 0.08); }
+.resource-dhs:hover { box-shadow: 0 8px 24px rgba(100, 116, 139, 0.2); }
+
 /* ============ FOOTER ============ */
 .footer {
   padding: 48px 0; text-align: center;
